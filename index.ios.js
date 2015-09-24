@@ -35,11 +35,10 @@ var Select = React.createClass({
   render: function () {
     return (
       <View style={styles.container}>
-        <ScrollableTabView renderTabBar={() => <TabBar></TabBar>}>
+        <ScrollableTabView
+          renderTabBar={() => <TabBar></TabBar>}>
           <HomeTab tabLabel="Home"/>
           <DummyPage tabLabel="Dummy2"/>
-          <DummyPage tabLabel="Dummy3"/>
-          <DummyPage tabLabel="Dummy4"/>
         </ScrollableTabView>
       </View>
 
@@ -50,7 +49,6 @@ var Select = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
   },
   tabView: {
     width: deviceWidth,

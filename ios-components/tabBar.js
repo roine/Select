@@ -16,11 +16,6 @@ var TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
 
 class TabBar extends Component {
 
-  constructor() {
-    super();
-    this.selectedTabIcons = [];
-    this.unselectedTabIcons = [];
-  }
 
   renderTab(name, page, tabsCount) {
     var isActiveTab = this.props.activeTab === page;
@@ -32,8 +27,6 @@ class TabBar extends Component {
         </View>
       </TouchableOpacity>
     )
-
-
   }
 
   setAnimationValue(value) {
@@ -55,20 +48,28 @@ class TabBar extends Component {
 }
 
 var styles = StyleSheet.create({
+  extraMenu: {
+    backgroundColor: '#3498db'
+  },
+  extraMenuItem:{
+    flex:1
+  },
   tabs: {
-    height: 50,
+    paddingTop: 30,
     flexDirection: 'row',
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomColor: '#ccc',
+    backgroundColor: '#2ecc71'
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
-    paddingBottom: 10,
     alignItems: 'center',
+    padding: 10,
+    borderRadius: 5
   },
   tabBarUnderlineStyle: {
     position: 'absolute',
@@ -77,12 +78,10 @@ var styles = StyleSheet.create({
     bottom: 0,
   },
   tabBarText: {
-    color: 'black',
-    fontWeight: 'normal'
+    color: 'white'
   },
   tabBarTextActive: {
-    color: 'navy',
-    fontWeight: '900'
+    color: '#000000'
   }
 });
 
