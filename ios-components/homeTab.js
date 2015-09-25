@@ -16,12 +16,6 @@ class HomeTab extends React.Component {
         <ScrollView style={styles.tabView}>
           <Text>Home</Text>
         </ScrollView>
-        <Icon
-          name='ion|beer'
-          size={50}
-          color='black'
-          style={{width:100, height:100}}
-          />
       </View>
     )
   }

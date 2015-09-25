@@ -37,8 +37,8 @@ var Select = React.createClass({
       <View style={styles.container}>
         <ScrollableTabView
           renderTabBar={() => <TabBar></TabBar>}>
-          <HomeTab tabLabel="Home"/>
-          <DummyPage tabLabel="Dummy2"/>
+          <HomeTab tabLabel="Home, ion|ios-home-outline, ion|ios-home"/>
+          <DummyPage tabLabel="Dummy2, ion|ios-cog-outline, ion|ios-cog"/>
         </ScrollableTabView>
       </View>
 

@@ -1,6 +1,7 @@
-var React = require('react-native');
+const React = require('react-native');
+const {Icon} = require('react-native-icons')
 
-var {
+const {
   StyleSheet,
   Text,
   View,
@@ -9,20 +10,39 @@ var {
   Dimensions
   } = React;
 
-var deviceWidth = Dimensions.get('window').width;
+const deviceWidth = Dimensions.get('window').width;
 
-var precomputeStyle = require('precomputeStyle');
-var TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
+const precomputeStyle = require('precomputeStyle');
+const TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
+
+const BAR_BACKGROUND_COLOR = "#7CDFA6";
+const ACTIVE_COLOR = "#000000";
+const INACTIVE_COLOR = "#727272";
+const ICON_SIZE = 30;
 
 class TabBar extends Component {
+
+  renderIcons(icon, active) {
+    if (!icon) {
+      return <div></div>
+    }
+    return <Icon
+      name={icon}
+      size={ICON_SIZE}
+      color={active ? ACTIVE_COLOR: INACTIVE_COLOR}
+      style={{width: ICON_SIZE, height: ICON_SIZE}}
+      />
+  }
 
 
   renderTab(name, page, tabsCount) {
     var isActiveTab = this.props.activeTab === page;
+    var [name, icon, iconActive] = name.split(/[ ,]+/);
 
     return (
       <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)}>
         <View style={[styles.tab, {width: (deviceWidth / tabsCount)}]}>
+          {this.renderIcons(isActiveTab ? iconActive : icon, isActiveTab)}
           <Text style={[styles.tabBarText, isActiveTab && styles.tabBarTextActive]}>{name}</Text>
         </View>
       </TouchableOpacity>
@@ -51,37 +71,37 @@ var styles = StyleSheet.create({
   extraMenu: {
     backgroundColor: '#3498db'
   },
-  extraMenuItem:{
-    flex:1
+  extraMenuItem: {
+    flex: 1
   },
   tabs: {
-    paddingTop: 30,
+    paddingTop: 20,
+    paddingBottom: 5,
     flexDirection: 'row',
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomColor: '#ccc',
-    backgroundColor: '#2ecc71'
+    backgroundColor: BAR_BACKGROUND_COLOR,
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    borderRadius: 5
   },
   tabBarUnderlineStyle: {
     position: 'absolute',
     height: 4,
-    backgroundColor: 'navy',
+    backgroundColor: ACTIVE_COLOR,
     bottom: 0,
   },
   tabBarText: {
-    color: 'white'
+    color: INACTIVE_COLOR,
+    fontWeight: '500'
   },
   tabBarTextActive: {
-    color: '#000000'
+    color: ACTIVE_COLOR
   }
 });
 
