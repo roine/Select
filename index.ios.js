@@ -1,24 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
 
-var React = require('react-native');
-var ScrollableTabView = require('react-native-scrollable-tab-view');
-var {deviceWidth, deviceHeight} = require('Dimensions');
+// Vendors
+const React = require('react-native');
+const ScrollableTabView = require('react-native-scrollable-tab-view');
 
 // Self-made components
-var TabBar = require('./ios-components/tabBar');
-var HomeTab = require('./ios-components/homeTab');
+const TabBar = require('./ios-components/tabBar');
+const HomeTab = require('./ios-components/pages/homeTab');
+const SidePanel = require('./ios-components/sidePanel');
 
-var {
+
+const {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  ScrollView
+  ScrollView,
+  Dimensions
   } = React;
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 class DummyPage extends React.Component {
   render() {
@@ -38,10 +39,10 @@ var Select = React.createClass({
         <ScrollableTabView
           renderTabBar={() => <TabBar></TabBar>}>
           <HomeTab tabLabel="Home, ion|ios-home-outline, ion|ios-home"/>
-          <DummyPage tabLabel="Dummy2, ion|ios-cog-outline, ion|ios-cog"/>
+          <DummyPage tabLabel="Dummy2R, ion|ios-cog-outline, ion|ios-cog"/>
         </ScrollableTabView>
+        <SidePanel></SidePanel>
       </View>
-
     );
   }
 });
@@ -51,8 +52,8 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   tabView: {
-    width: deviceWidth,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    height: deviceHeight
   }
 });
 

@@ -1,6 +1,6 @@
 const React = require('react-native');
-const {Icon} = require('react-native-icons')
-
+const {Icon} = require('react-native-icons');
+const {tabBar} = require('./../shared/colors');
 const {
   StyleSheet,
   Text,
@@ -15,9 +15,9 @@ const deviceWidth = Dimensions.get('window').width;
 const precomputeStyle = require('precomputeStyle');
 const TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
 
-const BAR_BACKGROUND_COLOR = "#7CDFA6";
-const ACTIVE_COLOR = "#000000";
-const INACTIVE_COLOR = "#727272";
+const BAR_BACKGROUND_COLOR = tabBar.background;
+const ACTIVE_COLOR = tabBar.active;
+const INACTIVE_COLOR = tabBar.inactive;
 const ICON_SIZE = 30;
 
 class TabBar extends Component {
@@ -78,26 +78,27 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 5,
     flexDirection: 'row',
-    borderWidth: 1,
+    borderWidth: 0,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomColor: '#ccc',
     backgroundColor: BAR_BACKGROUND_COLOR,
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
+
   tabBarUnderlineStyle: {
     position: 'absolute',
-    height: 4,
-    backgroundColor: ACTIVE_COLOR,
+    height: 2,
     bottom: 0,
+    backgroundColor: ACTIVE_COLOR,
   },
   tabBarText: {
     color: INACTIVE_COLOR,
+    fontFamily: 'Roboto',
     fontWeight: '500'
   },
   tabBarTextActive: {
