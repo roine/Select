@@ -22,7 +22,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FC602FFA1BB465ED00F045A1 /* foundation-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC602FF91BB465ED00F045A1 /* foundation-icons.ttf */; };
 		FC60300B1BB4665100F045A1 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC60300A1BB4662600F045A1 /* libReactNativeIcons.a */; };
 		FC6030111BB466CE00F045A1 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = FC60300C1BB466CE00F045A1 /* FontAwesome.otf */; };
@@ -30,6 +30,7 @@
 		FC6030131BB466CE00F045A1 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC60300E1BB466CE00F045A1 /* ionicons.ttf */; };
 		FC6030141BB466CE00F045A1 /* Material-Design-Iconic-Font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC60300F1BB466CE00F045A1 /* Material-Design-Iconic-Font.ttf */; };
 		FC6030151BB466CE00F045A1 /* zocial-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC6030101BB466CE00F045A1 /* zocial-regular-webfont.ttf */; };
+		FC8F564F1BB9679A00E2A0C2 /* libRNOverlay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8F564E1BB9671000E2A0C2 /* libRNOverlay.a */; };
 		FC94E2181BB5AE2400E46DAC /* RNBlur in Resources */ = {isa = PBXBuildFile; fileRef = FC94E2161BB5AE2400E46DAC /* RNBlur */; };
 		FC94E2191BB5AE2400E46DAC /* RNVibrancy in Resources */ = {isa = PBXBuildFile; fileRef = FC94E2171BB5AE2400E46DAC /* RNVibrancy */; };
 		FCB9CEA91BB566A900E219D7 /* roboto-2014 in Resources */ = {isa = PBXBuildFile; fileRef = FCB9CEA81BB566A900E219D7 /* roboto-2014 */; };
@@ -138,6 +139,13 @@
 			remoteGlobalIDString = 2F5A3EB81ACDBF8000439386;
 			remoteInfo = ReactNativeIcons;
 		};
+		FC8F564D1BB9671000E2A0C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC8F563E1BB9671000E2A0C2 /* RNOverlay.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNOverlay;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +177,7 @@
 		FC60300E1BB466CE00F045A1 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ionicons.ttf; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/ionicons.ttf"; sourceTree = "<group>"; };
 		FC60300F1BB466CE00F045A1 /* Material-Design-Iconic-Font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Material-Design-Iconic-Font.ttf"; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/Material-Design-Iconic-Font.ttf"; sourceTree = "<group>"; };
 		FC6030101BB466CE00F045A1 /* zocial-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zocial-regular-webfont.ttf"; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/zocial-regular-webfont.ttf"; sourceTree = "<group>"; };
+		FC8F563E1BB9671000E2A0C2 /* RNOverlay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNOverlay.xcodeproj; path = "../node_modules/react-native-overlay/RNOverlay.xcodeproj"; sourceTree = "<group>"; };
 		FC94E2161BB5AE2400E46DAC /* RNBlur */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RNBlur; sourceTree = "<group>"; };
 		FC94E2171BB5AE2400E46DAC /* RNVibrancy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RNVibrancy; sourceTree = "<group>"; };
 		FCB9CEA81BB566A900E219D7 /* roboto-2014 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "roboto-2014"; sourceTree = "<group>"; };
@@ -204,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8F564F1BB9679A00E2A0C2 /* libRNOverlay.a in Frameworks */,
 				FC60300B1BB4665100F045A1 /* libReactNativeIcons.a in Frameworks */,
 				FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -327,6 +337,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FC8F563E1BB9671000E2A0C2 /* RNOverlay.xcodeproj */,
 				FC6030051BB4662600F045A1 /* ReactNativeIcons.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -385,6 +396,14 @@
 			isa = PBXGroup;
 			children = (
 				FC60300A1BB4662600F045A1 /* libReactNativeIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC8F563F1BB9671000E2A0C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC8F564E1BB9671000E2A0C2 /* libRNOverlay.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -523,6 +542,10 @@
 					ProductGroup = FC6030061BB4662600F045A1 /* Products */;
 					ProjectRef = FC6030051BB4662600F045A1 /* ReactNativeIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = FC8F563F1BB9671000E2A0C2 /* Products */;
+					ProjectRef = FC8F563E1BB9671000E2A0C2 /* RNOverlay.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -608,6 +631,13 @@
 			fileType = archive.ar;
 			path = libReactNativeIcons.a;
 			remoteRef = FC6030091BB4662600F045A1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FC8F564E1BB9671000E2A0C2 /* libRNOverlay.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNOverlay.a;
+			remoteRef = FC8F564D1BB9671000E2A0C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

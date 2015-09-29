@@ -1,6 +1,6 @@
 const React = require('react-native');
 const {Icon} = require('react-native-icons');
-const {tabBar} = require('./../shared/colors');
+const {tabBar} = require('./../../shared/colors');
 const {
   StyleSheet,
   Text,

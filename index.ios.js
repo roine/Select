@@ -1,60 +1,25 @@
-
-// Vendors
 const React = require('react-native');
-const ScrollableTabView = require('react-native-scrollable-tab-view');
+const {createStore} = require('redux');
+const {Provider} = require('react-redux/native');
+const reducers = require('./ios-sources/reducers');
+const App = require('./ios-sources/containers/AppContainer')
+const configureStore = require('./ios-sources/store/configureStore');
 
-// Self-made components
-const TabBar = require('./ios-components/tabBar');
-const HomeTab = require('./ios-components/pages/homeTab');
-const SidePanel = require('./ios-components/sidePanel');
-
-
+let store = configureStore();
+//let store = createStore(reducers);
 const {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Dimensions
+  Component
   } = React;
 
-const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
-
-class DummyPage extends React.Component {
+class Select extends Component {
   render() {
     return (
-      <ScrollView style={styles.tabView}>
-        <Text>Dummy Page</Text>
-      </ScrollView>
-    )
-  }
-}
-
-
-var Select = React.createClass({
-  render: function () {
-    return (
-      <View style={styles.container}>
-        <ScrollableTabView
-          renderTabBar={() => <TabBar></TabBar>}>
-          <HomeTab tabLabel="Home, ion|ios-home-outline, ion|ios-home"/>
-          <DummyPage tabLabel="Dummy2R, ion|ios-cog-outline, ion|ios-cog"/>
-        </ScrollableTabView>
-        <SidePanel></SidePanel>
-      </View>
+      <Provider store={store}>
+        {()=> <App/>}
+      </Provider>
     );
   }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  tabView: {
-    backgroundColor: 'red',
-    height: deviceHeight
-  }
-});
+}
 
 AppRegistry.registerComponent('Select', () => Select);

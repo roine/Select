@@ -1,18 +1,24 @@
 const React = require('react-native');
 const {Icon} = require('react-native-icons');
-const {home, bottomSide} = require('./../../shared/colors');
+const {connect} = require('react-redux/native');
+const {createStore} = require('redux');
 
-var {
+const {home, bottomSide} = require('./../../shared/colors');
+const {requestDisplay, REQUEST_OPEN, REQUEST_CLOSE} = require('./../actions');
+
+const {
   ScrollView,
   View,
   Text,
   StyleSheet,
   Dimensions,
   AsyncStorage,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
   } = React;
-var deviceWidth = Dimensions.get('window').width;
-var deviceHeight = Dimensions.get('window').height;
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 const ICON_SIZE = 80;
 const NO_CONTENT_FONT_COLOR = home.noContent.font;
@@ -32,7 +38,16 @@ class HomeTab extends React.Component {
   }
 
   openCreateCriteriaBox() {
-    console.log('created')
+    this.props.dispatch({ type: REQUEST_OPEN, injected: this.renderCriteriaContent() });
+  }
+
+  renderCriteriaContent() {
+    return (
+      <View>
+        <TextInput
+          style={{height:40, borderColor: 'navy', borderWidth: 1}}/>
+      </View>
+    );
   }
 
   renderNoCriteria() {
@@ -52,6 +67,7 @@ class HomeTab extends React.Component {
   }
 
   render() {
+    console.log('props here in hometab', this.props)
     return (
       <View style={styles.tabView}>
         {this.criterias.length ? this.renderCriteria() : this.renderNoCriteria()}
@@ -94,5 +110,9 @@ var styles = StyleSheet.create({
   }
 });
 
+HomeTab.propTypes = {
+  onRequestModule: React.PropTypes.func
+};
 
-module.exports = HomeTab;
+
+module.exports = connect(() => ({}))(HomeTab);

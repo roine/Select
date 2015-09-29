@@ -10,6 +10,10 @@
     "react-native": "^0.11.0",
     "react-native-blur": "^0.6.1",
     "react-native-icons": "^0.4.0",
-    "react-native-scrollable-tab-view": "^0.1.10"
+    "react-native-overlay": "^0.3.0",
+    "react-native-scrollable-tab-view": "^0.1.10",
+    "react-redux": "^3.0.1",
+    "redux": "^3.0.2",
+    "redux-thunk": "^1.0.0"
   }
 }
