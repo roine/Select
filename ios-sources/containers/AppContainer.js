@@ -37,13 +37,10 @@ class DummyPage extends React.Component {
 
 class App extends React.Component {
 
-  constructor() {
-    super();
+  updateState() {
+    console.log('overlay pressed')
+    if (this.props.sidePanel.closeOnClickOverlay) {
 
-    this.state = {
-      displaySidePanel: false,
-      contentSidePanel: function () {
-      }
     }
   }
 
@@ -55,8 +52,10 @@ class App extends React.Component {
           <DummyPage tabLabel="Dummy2R, ion|ios-cog-outline, ion|ios-cog"/>
         </ScrollableTabView>
         <SidePanel
-          isVisible={this.props.sidePanel.status === OPEN ? true : false}
-          content={this.props.sidePanel.injected}/>
+          isVisible={this.props.sidePanel.status === OPEN}
+          content={this.props.sidePanel.injected}
+          onClickOverlay={this.updateState.bind(this)}
+          height={this.props.sidePanel.height}/>
       </View>
     );
   }
@@ -73,7 +72,7 @@ var styles = StyleSheet.create({
   }
 });
 
-function select(state){
+function select(state) {
   return {
     sidePanel: state.sidePanel
   }

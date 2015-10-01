@@ -4,7 +4,7 @@ const {connect} = require('react-redux/native');
 const {createStore} = require('redux');
 
 const {home, bottomSide} = require('./../../shared/colors');
-const {requestDisplay, REQUEST_OPEN, REQUEST_CLOSE} = require('./../actions');
+const {REQUEST_OPEN, REQUEST_CLOSE, UPDATE_CONTENT} = require('./../actions');
 
 const {
   ScrollView,
@@ -23,8 +23,21 @@ const deviceHeight = Dimensions.get('window').height;
 const ICON_SIZE = 80;
 const NO_CONTENT_FONT_COLOR = home.noContent.font;
 const NO_CONTENT_BACKGROUND_COLOR = home.noContent.background;
+const INPUT_HEIGHT = 40;
 
 class HomeTab extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      text: ''
+    }
+  }
+
+  componentDidUpdate(){
+
+  }
+
   componentWillMount() {
     this.criterias = [];
   }
@@ -38,14 +51,32 @@ class HomeTab extends React.Component {
   }
 
   openCreateCriteriaBox() {
-    this.props.dispatch({ type: REQUEST_OPEN, injected: this.renderCriteriaContent() });
+    this.props.dispatch({
+      type: REQUEST_OPEN,
+      injected: this.renderCriteriaContent(),
+      closeOnClickOverlay: true,
+      height: INPUT_HEIGHT
+    });
+  }
+
+  updateCriteriaBoxContent() {
+    this.props.dispatch({
+      type: UPDATE_CONTENT,
+      injected: this.renderCriteriaContent()
+    });
   }
 
   renderCriteriaContent() {
     return (
       <View>
         <TextInput
-          style={{height:40, borderColor: 'navy', borderWidth: 1}}/>
+          style={{ height: INPUT_HEIGHT, borderColor: NO_CONTENT_BACKGROUND_COLOR, borderWidth: 1, paddingLeft: 10 }}
+          onChangeText={(text => this.setState({text})).bind(this)}
+          value={this.state.text}
+          returnKeyType="done"
+          placeholder="Add a new Criteria"
+          clearButtonMode="always"
+          />
       </View>
     );
   }
@@ -58,16 +89,19 @@ class HomeTab extends React.Component {
               color={NO_CONTENT_FONT_COLOR}
               style={{width: ICON_SIZE, height: ICON_SIZE}}></Icon>
         <Text style={styles.noCriteriaText}>You did not set any criteria yet!</Text>
-        <TouchableOpacity style={styles.buttonCreate}
-                          onPress={this.openCreateCriteriaBox.bind(this)}>
-          <Text style={styles.buttonCreateText}>Add a new Criteria</Text>
+        <TouchableOpacity onPress={this.openCreateCriteriaBox.bind(this)} style={styles.buttonCreate}>
+          <View >
+            <Text style={styles.buttonCreateText}>Add a new Criteria</Text>
+          </View>
+
         </TouchableOpacity>
+
       </View>
     )
   }
 
   render() {
-    console.log('props here in hometab', this.props)
+    this.updateCriteriaBoxContent();
     return (
       <View style={styles.tabView}>
         {this.criterias.length ? this.renderCriteria() : this.renderNoCriteria()}
