@@ -2,31 +2,32 @@ const React = require('react-native');
 const Overlay = require('react-native-overlay');
 const {bottomSideMenu} = require('./../../shared/colors');
 
-
 const {
   View,
   Text,
   Component,
   Dimensions,
   Animated,
+  LayoutAnimation,
   DeviceEventEmitter,
   Touchable
   } = React;
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
-// 1 is the device height
-const ratioHeight = .2;
 
-const padding = 10;
+const HIDE = -deviceHeight;
+const SHOW = 0;
 
 class SidePanel extends Component {
   constructor() {
     super();
 
     this.state = {
-      top: new Animated.Value(0),
-      height: deviceHeight * ratioHeight
+      bottom: new Animated.Value(HIDE),
+      opacity: new Animated.Value(0),
+      height: null,
+      isVisible: false
     };
 
 
@@ -35,10 +36,10 @@ class SidePanel extends Component {
   }
 
   componentDidMount() {
-    this.state.top.setValue(deviceHeight);
+    this.state.bottom.setValue(HIDE);
+    this.state.opacity.setValue(0);
 
     DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace);
-
     DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace);
   }
 
@@ -46,12 +47,21 @@ class SidePanel extends Component {
     if (this.props.isVisible === nextProps.isVisible) {
       return;
     }
-    if (nextProps.isVisible) {
-      this.show = this.show || deviceHeight - nextProps.height - padding * 2;
-      this.animate(this.show);
+
+    // opening
+    if (nextProps.isVisible && !this.props.isVisible) {
+      this.setState({ isVisible: true });
+      Animated.sequence([
+        this.animateOpacity(0.6),
+        this.animateBottom(SHOW)
+      ]).start();
     }
-    else if (!nextProps.isVisible) {
-      this.animate(HIDE)
+    // closing
+    else if (!nextProps.isVisible && this.props.isVisible) {
+      Animated.sequence([
+        this.animateBottom(-this.state.height || HIDE),
+        this.animateOpacity(0)
+      ]).start(() => this.setState({ isVisible: false }));
     }
   }
 
@@ -60,36 +70,54 @@ class SidePanel extends Component {
     DeviceEventEmitter.removeEventListener('keyboardWillHide', this.resetKeyboardSpace);
   }
 
+  // onLayout, recalculate the height and move below the fold by 100% of height,
+  // this way the animation is better since it doesnt start from very far
+  measureContentHeight() {
+    this.refs.contentWrapper.measure((ox, oy, width, height) => {
+      this.setState({ height });
+      this.state.bottom.setValue(-height);
+    });
+  }
+
   updateKeyboardSpace(data) {
     if (data.endCoordinates) {
-      console.log(this.show)
-      this.animate(this.show - data.endCoordinates.height);
-      this.setState({ height: data.endCoordinates.screenY - deviceHeight * ratioHeight })
+      this.animateBottom(SHOW + data.endCoordinates.height).start();
     }
   }
 
   resetKeyboardSpace() {
-    this.animate(this.show);
+    this.animateBottom(SHOW).start();
   }
 
-  animate(value) {
-    console.log('animate to', value)
-    Animated.timing(
-      this.state.top,
+  animateBottom(value) {
+    return Animated.timing(
+      this.state.bottom,
       {
         toValue: value,
         duration: 300
       }
-    ).start();
+    );
   }
 
-//
+  animateOpacity(value) {
+    return Animated.timing(
+      this.state.opacity, {
+        toValue: value,
+        duration: 300
+      }
+    );
+  }
+
+
   render() {
     return (
-      <Overlay isVisible={this.props.isVisible} aboveStatusBar={true}>
-        <View style={styles.overlay} onMoveShouldSetResponder={()=> true}>
-          <Animated.View style={[styles.createBoxContainer, {top: this.state.top}]}>
-            <View style={[styles.createBox, this.props.style]} ref="contentWrapper">
+      <Overlay isVisible={this.state.isVisible} aboveStatusBar={true}>
+        <View style={styles.overlayWrapper}>
+          <Animated.View style={[styles.overlay, {opacity: this.state.opacity}]}>
+          </Animated.View>
+          <Animated.View style={[styles.createBoxContainer, {bottom: this.state.bottom}]}>
+            <View style={[styles.createBox, this.props.style]} ref="contentWrapper"
+                  onLayout={this.measureContentHeight.bind(this)}>
               {this.props.content}
             </View>
           </Animated.View>
@@ -100,16 +128,19 @@ class SidePanel extends Component {
 }
 
 const styles = {
-  overlay: {
+  overlayWrapper: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, .5)',
     width: deviceWidth,
-    alignItems: 'center'
+  },
+  overlay: {
+    backgroundColor: 'black',
+    height: deviceHeight,
+    alignItems: 'center',
   },
   createBoxContainer: {
+    position: 'absolute',
     width: deviceWidth,
     alignItems: 'center',
-    flex: 1,
   },
   createBox: {
     flex: 1,
@@ -119,7 +150,7 @@ const styles = {
     borderColor: '#cccccc',
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    padding: padding,
+    padding: 10,
   }
 };
 

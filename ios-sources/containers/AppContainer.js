@@ -55,7 +55,7 @@ class App extends React.Component {
           isVisible={this.props.sidePanel.status === OPEN}
           content={this.props.sidePanel.injected}
           onClickOverlay={this.updateState.bind(this)}
-          height={this.props.sidePanel.height}/>
+          />
       </View>
     );
   }

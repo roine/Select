@@ -34,7 +34,7 @@ class HomeTab extends React.Component {
     }
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
 
   }
 
@@ -66,6 +66,20 @@ class HomeTab extends React.Component {
     });
   }
 
+  saveCriteriaAndCloseBox() {
+    this.props.dispatch({
+      type: REQUEST_CLOSE
+    });
+
+    if(this.state.text === ''){
+      return;
+    }
+
+    // do some saving
+    this.setState({ text: '' });
+
+  }
+
   renderCriteriaContent() {
     return (
       <View>
@@ -76,6 +90,7 @@ class HomeTab extends React.Component {
           returnKeyType="done"
           placeholder="Add a new Criteria"
           clearButtonMode="always"
+          onEndEditing={this.saveCriteriaAndCloseBox.bind(this)}
           />
       </View>
     );
