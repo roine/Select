@@ -18,7 +18,7 @@ const TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
 const BAR_BACKGROUND_COLOR = tabBar.background;
 const ACTIVE_COLOR = tabBar.active;
 const INACTIVE_COLOR = tabBar.inactive;
-const ICON_SIZE = 30;
+const ICON_SIZE = 24;
 
 class TabBar extends Component {
 
@@ -68,26 +68,16 @@ class TabBar extends Component {
 }
 
 var styles = StyleSheet.create({
-  extraMenu: {
-    backgroundColor: '#3498db'
-  },
-  extraMenuItem: {
-    flex: 1
-  },
   tabs: {
     paddingTop: 20,
     paddingBottom: 5,
     flexDirection: 'row',
-    borderWidth: 0,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: BAR_BACKGROUND_COLOR,
+    backgroundColor: BAR_BACKGROUND_COLOR
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   tabBarUnderlineStyle: {
@@ -99,7 +89,8 @@ var styles = StyleSheet.create({
   tabBarText: {
     color: INACTIVE_COLOR,
     fontFamily: 'Roboto',
-    fontWeight: '500'
+    fontWeight: '500',
+    fontSize: 12
   },
   tabBarTextActive: {
     color: ACTIVE_COLOR

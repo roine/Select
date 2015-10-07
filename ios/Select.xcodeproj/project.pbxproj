@@ -22,6 +22,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		FC5109EE1BC2AE7400DDE3F2 /* libAIBSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109ED1BC2AE5A00DDE3F2 /* libAIBSQLite.a */; };
+		FC5109F11BC2AFA600DDE3F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */; };
+		FC5109F31BC2AFA600DDE3F2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */; };
 		FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FC602FFA1BB465ED00F045A1 /* foundation-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC602FF91BB465ED00F045A1 /* foundation-icons.ttf */; };
 		FC60300B1BB4665100F045A1 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC60300A1BB4662600F045A1 /* libReactNativeIcons.a */; };
@@ -132,6 +135,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		FC5109EC1BC2AE5A00DDE3F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E23D7B471ACEFE2A00C59171;
+			remoteInfo = AIBSQLite;
+		};
 		FC6030091BB4662600F045A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC6030051BB4662600F045A1 /* ReactNativeIcons.xcodeproj */;
@@ -170,6 +180,9 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIBSQLite.xcodeproj; path = "../node_modules/react-native-sqlite/AIBSQLite.xcodeproj"; sourceTree = "<group>"; };
+		FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		FC602FF91BB465ED00F045A1 /* foundation-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundation-icons.ttf"; sourceTree = "<group>"; };
 		FC6030051BB4662600F045A1 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "../node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
 		FC60300C1BB466CE00F045A1 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FontAwesome.otf"; sourceTree = "<group>"; };
@@ -213,6 +226,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5109F31BC2AFA600DDE3F2 /* libsqlite3.0.tbd in Frameworks */,
+				FC5109F11BC2AFA600DDE3F2 /* libsqlite3.tbd in Frameworks */,
+				FC5109EE1BC2AE7400DDE3F2 /* libAIBSQLite.a in Frameworks */,
 				FC8F564F1BB9679A00E2A0C2 /* libRNOverlay.a in Frameworks */,
 				FC60300B1BB4665100F045A1 /* libReactNativeIcons.a in Frameworks */,
 				FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */,
@@ -364,6 +380,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */,
+				FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */,
+				FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */,
 				FC94E2161BB5AE2400E46DAC /* RNBlur */,
 				FC94E2171BB5AE2400E46DAC /* RNVibrancy */,
 				FCB9CEA81BB566A900E219D7 /* roboto-2014 */,
@@ -388,6 +407,14 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Select.app */,
 				00E356EE1AD99517003FC87E /* SelectTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC5109E91BC2AE5A00DDE3F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC5109ED1BC2AE5A00DDE3F2 /* libAIBSQLite.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,6 +525,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = FC5109E91BC2AE5A00DDE3F2 /* Products */;
+					ProjectRef = FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -624,6 +655,13 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FC5109ED1BC2AE5A00DDE3F2 /* libAIBSQLite.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAIBSQLite.a;
+			remoteRef = FC5109EC1BC2AE5A00DDE3F2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		FC60300A1BB4662600F045A1 /* libReactNativeIcons.a */ = {

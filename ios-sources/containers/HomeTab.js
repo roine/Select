@@ -4,7 +4,11 @@ const {connect} = require('react-redux/native');
 const {createStore} = require('redux');
 
 const {home, bottomSide} = require('./../../shared/colors');
-const {REQUEST_OPEN, REQUEST_CLOSE, UPDATE_CONTENT} = require('./../actions');
+const {SIDE_PANEL_OPEN, SIDE_PANEL_CLOSE, SIDE_PANEL_UPDATE} = require('./../actions');
+const {capitalize} = require('./../../shared/helpers');
+
+// DB
+const {DB} = require('./../../shared/database-wrapper');
 
 const {
   ScrollView,
@@ -25,34 +29,52 @@ const NO_CONTENT_FONT_COLOR = home.noContent.font;
 const NO_CONTENT_BACKGROUND_COLOR = home.noContent.background;
 const INPUT_HEIGHT = 40;
 
+const fixture = [
+  {
+    name: 'dsfdsgdfhjfgerwfrdghjfdsa dfgh dfghj fdgh agf'
+  },
+  {
+    name: 'Mobile'
+  },{
+    name: 'Projector'
+  },{
+    name: 'Bicycle'
+  },{
+    name: 'Printer'
+  },{
+    name: 'Place where we could settle'
+  },{
+    name: 'Diamond ring'
+  },
+]
+
 class HomeTab extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      text: ''
+      text: '',
+      criteria: []
     }
   }
 
-  componentDidUpdate() {
-
-  }
 
   componentWillMount() {
-    this.criterias = [];
+    this.loadCriteria();
   }
 
-  renderCriteria() {
-    return (
-      <ScrollView style={{width: deviceWidth}}>
-        <Text>Home</Text>
-      </ScrollView>
-    );
+  async loadCriteria() {
+    const criterion = new DB().model('criteria');
+    let criteria = await criterion.all();
+    if (criteria) {
+      criteria = [...criteria, ...fixture]
+      this.setState({ criteria });
+    }
   }
 
   openCreateCriteriaBox() {
     this.props.dispatch({
-      type: REQUEST_OPEN,
+      type: SIDE_PANEL_OPEN,
       injected: this.renderCriteriaContent(),
       closeOnClickOverlay: true,
       height: INPUT_HEIGHT
@@ -61,19 +83,15 @@ class HomeTab extends React.Component {
 
   updateCriteriaBoxContent() {
     this.props.dispatch({
-      type: UPDATE_CONTENT,
+      type: SIDE_PANEL_UPDATE,
       injected: this.renderCriteriaContent()
     });
   }
 
   saveCriteriaAndCloseBox() {
     this.props.dispatch({
-      type: REQUEST_CLOSE
+      type: SIDE_PANEL_CLOSE
     });
-
-    if(this.state.text === ''){
-      return;
-    }
 
     // do some saving
     this.setState({ text: '' });
@@ -115,11 +133,46 @@ class HomeTab extends React.Component {
     )
   }
 
+  renderCriteria() {
+    return (
+      <ScrollView style={styles.criteriaScrollView} automaticallyAdjustContentInsets={false}>
+        {this.state.criteria.map((criterion, key)=> {
+          return (
+            <TouchableOpacity key={key}>
+              <View style={[styles.criterionView, key === 0 && styles.criterionViewFirstChild]}>
+                <View style={styles.criterionIconWrapper}>
+                  <Icon
+                    name="ion|ios-circle-outline"
+                    size={40}
+                    color="#333"
+                    style={{width: 40, height: 40, alignItems: 'center'}}
+                    >
+                    <Icon
+                      name='ion|flash'
+                      size={20}
+                      color='#333333'
+                      style={{width: 20, height: 20, flex: 1, backgroundColor:'transparent'}}
+                      />
+                  </Icon>
+                </View>
+                <View style={styles.criterionTextWrapper}>
+                  <Text style={styles.criterionText} numberOfLines={1}>{capitalize(criterion.name)}</Text>
+                  <Text style={{fontSize: 13, color: '#333', marginTop: 2}}>X criteria</Text>
+                </View>
+
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+      </ScrollView>
+    );
+  }
+
   render() {
     this.updateCriteriaBoxContent();
     return (
       <View style={styles.tabView}>
-        {this.criterias.length ? this.renderCriteria() : this.renderNoCriteria()}
+        {this.state.criteria.length ? this.renderCriteria() : this.renderNoCriteria()}
       </View>
     )
   }
@@ -128,6 +181,7 @@ class HomeTab extends React.Component {
 var styles = StyleSheet.create({
   tabView: {
     alignItems: 'center',
+    backgroundColor: 'transparent'
   },
   noCriteriaContainer: {
     backgroundColor: NO_CONTENT_BACKGROUND_COLOR,
@@ -156,6 +210,44 @@ var styles = StyleSheet.create({
   buttonCreateText: {
     fontSize: 18,
     color: NO_CONTENT_BACKGROUND_COLOR
+  },
+
+  // has criteria
+  criteriaScrollView: {
+    flex: 1,
+    width: deviceWidth,
+    marginTop: 8,
+  },
+  criterionViewFirstChild:{
+    borderColor:'transparent',
+  },
+  criterionView: {
+    height: 72,
+    paddingLeft: 16,
+    flexDirection: 'row',
+    alignItems: 'stretch'
+  },
+  criterionIconWrapper: {
+    width: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  criterionIcon: {
+    width: 30,
+    height: 30,
+
+  },
+  criterionTextWrapper: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+    justifyContent: 'center',
+    paddingRight: 16
+  },
+  criterionText: {
+    fontFamily: 'Roboto',
+    fontSize: 18,
+    fontWeight: '400',
   }
 });
 

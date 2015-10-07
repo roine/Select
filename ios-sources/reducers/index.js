@@ -1,5 +1,5 @@
 const {combineReducers} = require('redux');
-const {REQUEST_OPEN, REQUEST_CLOSE, OPEN, CLOSE, UPDATE_CONTENT} = require('./../actions');
+const {SIDE_PANEL_OPEN, SIDE_PANEL_CLOSE, OPEN, CLOSE, SIDE_PANEL_UPDATE} = require('./../actions');
 
 const sidePanelInitialState = {
   status: CLOSE,
@@ -7,14 +7,14 @@ const sidePanelInitialState = {
 };
 
 function sidePanel(state = sidePanelInitialState, action) {
-  if (action.type === REQUEST_CLOSE && OPEN) {
+  if (action.type === SIDE_PANEL_CLOSE && OPEN) {
 
     return {
       ...state,
       status: CLOSE
     };
   }
-  else if (action.type === REQUEST_OPEN && CLOSE) {
+  else if (action.type === SIDE_PANEL_OPEN && CLOSE) {
     return {
       ...state,
       status: OPEN,
@@ -23,7 +23,7 @@ function sidePanel(state = sidePanelInitialState, action) {
       height: action.height,
     }
   }
-  else if (action.type === UPDATE_CONTENT) {
+  else if (action.type === SIDE_PANEL_UPDATE) {
     return {
       ...state,
       injected: action.injected

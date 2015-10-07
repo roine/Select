@@ -3,8 +3,20 @@ const {connect} = require('react-redux/native');
 const {createStore} = require('redux');
 const ScrollableTabView = require('react-native-scrollable-tab-view');
 
+// DB
+const DBInitializer = require('./../../shared/database-initializer');
+DBInitializer.init();
+//DBInitializer.createDummy('criteria', [
+//  { name: 'Mobile' },
+//  { name: 'Projector' },
+//  { name: 'Bicyle' },
+//  { name: 'Printer' },
+//  { name: 'Place where we could settle' },
+//  { name: 'Diamond ring' }
+//]);
+
 // Redux
-const {requestClose, requestOpen, REQUEST_OPEN, OPEN, CLOSE} = require('./../actions');
+const {OPEN} = require('./../actions');
 
 // Self-made components
 const TabBar = require('./../components/TabBar');
@@ -38,7 +50,6 @@ class DummyPage extends React.Component {
 class App extends React.Component {
 
   updateState() {
-    console.log('overlay pressed')
     if (this.props.sidePanel.closeOnClickOverlay) {
 
     }
