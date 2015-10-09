@@ -7,7 +7,8 @@ const {
   View,
   Component,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Animated
   } = React;
 
 const deviceWidth = Dimensions.get('window').width;
@@ -40,11 +41,11 @@ class TabBar extends Component {
     var [name, icon, iconActive] = name.split(/[ ,]+/);
 
     return (
-      <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)}>
-        <View style={[styles.tab, {width: (deviceWidth / tabsCount)}]}>
+      <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)} activeOpacity={.6}>
+        <Animated.View style={[styles.tab, {width: (deviceWidth / tabsCount), }]}>
           {this.renderIcons(isActiveTab ? iconActive : icon, isActiveTab)}
           <Text style={[styles.tabBarText, isActiveTab && styles.tabBarTextActive]}>{name}</Text>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     )
   }

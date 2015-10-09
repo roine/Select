@@ -6,7 +6,6 @@ const App = require('./ios-sources/containers/AppContainer')
 const configureStore = require('./ios-sources/store/configureStore');
 
 let store = configureStore();
-//let store = createStore(reducers);
 const {
   AppRegistry,
   Component

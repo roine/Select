@@ -36,9 +36,6 @@ class SidePanel extends Component {
   }
 
   componentDidMount() {
-    this.state.bottom.setValue(HIDE);
-    this.state.opacity.setValue(0);
-
     DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace);
     DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace);
   }

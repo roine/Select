@@ -16,5 +16,6 @@ module.exports = {
   },
   bottomSideMenu: {
     background: '#ffffff'
-  }
+  },
+  addButton: Color(mainColor).darken(.4).rgbString()
 };

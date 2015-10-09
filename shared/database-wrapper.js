@@ -9,21 +9,29 @@ class DB {
   }
 
   prepare() {
-    return new RSVP.Promise((resolve, reject) => {
-      if (this.database) {
-        resolve(this.database);
-        return;
-      }
+    let defer = RSVP.defer();
+    if (this.database) {
+      defer.resolve(this.database);
+    }
+    else {
       sqlite.open(FILENAME, (error, database)=> {
         if (error) {
-          reject(error);
+          defer.reject(error);
           return;
         }
         this.database = database;
-        resolve(database);
+        defer.resolve(database);
       });
-    })
+    }
+    return defer.promise;
+  }
 
+  closeHandler(error) {
+    if (error) {
+      console.log('Failed to close database', error);
+      return;
+    }
+    this.database = null;
   }
 
   model(model) {
@@ -31,27 +39,21 @@ class DB {
     return this;
   }
 
-  add(data) {
-  }
-
-  test(){
-    console.log('from test',this._all())
-  }
-
-
-  async all() {
+  all() {
     let result = [];
-    if (!this.model) {
-      return { error: 'You didn\'t set a model: new DB().model(\'model\').all()' };
-    }
 
-    return await new RSVP.Promise((resolve, reject) => {
-      this.prepare().then((database) => {
-        let sql = "SELECT * FROM " + this.model +' ORDER BY ID DESC';
-        database.executeSQL(sql, null, rowCallback, completeCallback);
+    return new RSVP.Promise((resolve, reject) => {
+      if (!this.model) {
+        reject('You didn\'t set a model: new DB().model(\'model\').all()');
+        return;
+      }
+      this.prepare().then(database => {
+        let sql = "SELECT * FROM " + this.model + ' ORDER BY ID DESC';
+        database.executeSQL(sql, null, rowCallback, completeCallback.bind(this));
+
       }, reject);
 
-      function rowCallback(row){
+      function rowCallback(row) {
         result.push(row)
       }
 
@@ -60,15 +62,71 @@ class DB {
           reject(error);
           return;
         }
-        console.log('result', result)
-        resolve(result)
-
+        resolve(result);
       }
     });
-
   }
 
+  create(data) {
+    console.log('create call')
+    return new RSVP.Promise((resolve, reject) => {
+      if (!this.model) {
+        reject('You didn\'t set a model: new DB().model(\'model\').create()');
+        return;
+      }
+      // Request the last inserted row and return it in resolve
+      this.prepare().then(database => {
+        let columns = Object.keys(data);
+        let sql = `INSERT INTO ${this.model}(${columns.join(', ')}) VALUES(${columns.map(item => '\'' + data[item] + '\'').join(', ')})`;
+        database.executeSQL(sql, null, null, completeCallback.bind(this));
+      });
 
+      function completeCallback(error) {
+        if (error) {
+          reject(error);
+        }
+        else {
+          resolve(true);
+        }
+      }
+    });
+  }
+
+  getLastInsertedRow() {
+    console.log('called get last');
+    var result = [];
+    return new RSVP.Promise((resolve, reject)=> {
+      this.prepare().then(database => {
+        if(!this.model){
+          reject('You didn\'t set a model: new DB().model(\'model\').getLastInsertedRow()')
+        }
+        console.log('prep')
+        let sql = `SELECT * from ${this.model} ORDER BY id DESC LIMIT 1`;
+        database.executeSQL(sql, null, rowCallback, completeCallback);
+        console.log('exec')
+        function rowCallback(row) {
+          console.log('row', row)
+          result.push(row)
+        }
+
+        function completeCallback(error) {
+          console.log('called last row', error)
+          if (error) {
+            console.log('err', error)
+            reject(error);
+          }
+          if (result.length) {
+            console.log(result)
+            resolve(result);
+          }
+          else {
+            console.log(result)
+            reject(result);
+          }
+        }
+      });
+    });
+  }
 }
 
 

@@ -6,14 +6,6 @@ const ScrollableTabView = require('react-native-scrollable-tab-view');
 // DB
 const DBInitializer = require('./../../shared/database-initializer');
 DBInitializer.init();
-//DBInitializer.createDummy('criteria', [
-//  { name: 'Mobile' },
-//  { name: 'Projector' },
-//  { name: 'Bicyle' },
-//  { name: 'Printer' },
-//  { name: 'Place where we could settle' },
-//  { name: 'Diamond ring' }
-//]);
 
 // Redux
 const {OPEN} = require('./../actions');

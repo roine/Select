@@ -25,6 +25,7 @@
 		FC5109EE1BC2AE7400DDE3F2 /* libAIBSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109ED1BC2AE5A00DDE3F2 /* libAIBSQLite.a */; };
 		FC5109F11BC2AFA600DDE3F2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */; };
 		FC5109F31BC2AFA600DDE3F2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */; };
+		FC55568D1BC71BEC00A54738 /* select.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = FC55568C1BC71BEC00A54738 /* select.sqlite */; settings = {ASSET_TAGS = (); }; };
 		FC602FEC1BB462A300F045A1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FC602FFA1BB465ED00F045A1 /* foundation-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC602FF91BB465ED00F045A1 /* foundation-icons.ttf */; };
 		FC60300B1BB4665100F045A1 /* libReactNativeIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC60300A1BB4662600F045A1 /* libReactNativeIcons.a */; };
@@ -183,6 +184,7 @@
 		FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIBSQLite.xcodeproj; path = "../node_modules/react-native-sqlite/AIBSQLite.xcodeproj"; sourceTree = "<group>"; };
 		FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		FC55568C1BC71BEC00A54738 /* select.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = select.sqlite; sourceTree = "<group>"; };
 		FC602FF91BB465ED00F045A1 /* foundation-icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundation-icons.ttf"; sourceTree = "<group>"; };
 		FC6030051BB4662600F045A1 /* ReactNativeIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeIcons.xcodeproj; path = "../node_modules/react-native-icons/ios/ReactNativeIcons.xcodeproj"; sourceTree = "<group>"; };
 		FC60300C1BB466CE00F045A1 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/FontAwesome.otf"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FC55568C1BC71BEC00A54738 /* select.sqlite */,
 				FC5109F21BC2AFA600DDE3F2 /* libsqlite3.0.tbd */,
 				FC5109EF1BC2AE9F00DDE3F2 /* libsqlite3.tbd */,
 				FC5109E81BC2AE5A00DDE3F2 /* AIBSQLite.xcodeproj */,
@@ -719,6 +722,7 @@
 				FCB9CECB1BB566B700E219D7 /* RobotoCondensed-Light.ttf in Resources */,
 				FC6030151BB466CE00F045A1 /* zocial-regular-webfont.ttf in Resources */,
 				FCB9CEC81BB566B700E219D7 /* RobotoCondensed-Bold.ttf in Resources */,
+				FC55568D1BC71BEC00A54738 /* select.sqlite in Resources */,
 				FCB9CEBF1BB566B700E219D7 /* Roboto-BoldItalic.ttf in Resources */,
 				FCB9CEC41BB566B700E219D7 /* Roboto-MediumItalic.ttf in Resources */,
 				FC6030141BB466CE00F045A1 /* Material-Design-Iconic-Font.ttf in Resources */,
