@@ -13,6 +13,7 @@
     "react-native-overlay": "^0.3.0",
     "react-native-scrollable-tab-view": "^0.1.10",
     "react-native-sqlite": "0.0.12",
+    "react-native-swipeout": "^2.1.0",
     "react-redux": "^3.0.1",
     "redux": "^3.0.2",
     "redux-thunk": "^1.0.0",

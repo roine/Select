@@ -4,9 +4,15 @@ const SIDE_PANEL_UPDATE = 'UPDATE_CONTENT';
 const OPEN = 'OPEN';
 const CLOSE = 'CLOSE';
 
-let requestOpen = () => ({ type: REQUEST_OPEN });
-let requestClose = () => ({ type: REQUEST_CLOSE });
-let updateContent = () => ({ type: UPDATE_CONTENT })
+const FETCH_CRITERIA = 'FETCH_CRITERIA';
+//const RECE
+
+// @todo: not sure this is useful
+let requestOpen = () => ({ type: SIDE_PANEL_OPEN });
+let requestClose = () => ({ type: SIDE_PANEL_CLOSE });
+let updateContent = () => ({ type: SIDE_PANEL_UPDATE });
+let fetchCriteria = () => ({type: FETCH_CRITERIA});
+
 module.exports = {
   SIDE_PANEL_OPEN,
   SIDE_PANEL_CLOSE,
@@ -15,5 +21,8 @@ module.exports = {
   CLOSE,
   requestOpen,
   requestClose,
-  updateContent
+  updateContent,
+
+  FETCH_CRITERIA,
+  fetchCriteria
 };

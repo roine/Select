@@ -1,5 +1,5 @@
 const {combineReducers} = require('redux');
-const {SIDE_PANEL_OPEN, SIDE_PANEL_CLOSE, OPEN, CLOSE, SIDE_PANEL_UPDATE} = require('./../actions');
+const {SIDE_PANEL_OPEN, SIDE_PANEL_CLOSE, OPEN, CLOSE, SIDE_PANEL_UPDATE, FETCH_CRITERIA} = require('./../actions');
 
 const sidePanelInitialState = {
   status: CLOSE,
@@ -31,9 +31,13 @@ function sidePanel(state = sidePanelInitialState, action) {
   }
   return state;
 }
+let dataState = {
+  criteria: null
+};
 
 var rootReducer = combineReducers({
-  sidePanel
+  sidePanel,
+  //fetchData
 });
-
+//
 module.exports = rootReducer;
